@@ -1,0 +1,184 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: hsl(0, 0%, 100%);
+  --foreground: hsl(210, 20%, 15%);
+  --muted: hsl(210, 15%, 96%);
+  --muted-foreground: hsl(210, 10%, 40%);
+  --popover: hsl(0, 0%, 100%);
+  --popover-foreground: hsl(210, 20%, 15%);
+  --card: hsl(0, 0%, 100%);
+  --card-foreground: hsl(210, 20%, 15%);
+  --border: hsl(210, 15%, 88%);
+  --input: hsl(210, 15%, 93%);
+  --primary: hsl(210, 40%, 35%);
+  --primary-foreground: hsl(0, 0%, 98%);
+  --secondary: hsl(210, 15%, 25%);
+  --secondary-foreground: hsl(0, 0%, 98%);
+  --accent: hsl(210, 50%, 55%);
+  --accent-foreground: hsl(0, 0%, 98%);
+  --destructive: hsl(0, 75%, 55%);
+  --destructive-foreground: hsl(60, 9%, 98%);
+  --ring: hsl(210, 40%, 35%);
+  --radius: 0.75rem;
+  --chart-1: hsl(210, 40%, 35%);
+  --chart-2: hsl(210, 15%, 25%);
+  --chart-3: hsl(210, 50%, 55%);
+  --chart-4: hsl(210, 10%, 65%);
+  --chart-5: hsl(210, 10%, 80%);
+}
+
+.dark {
+  --background: hsl(210, 15%, 8%);
+  --foreground: hsl(0, 0%, 95%);
+  --muted: hsl(210, 15%, 15%);
+  --muted-foreground: hsl(210, 10%, 60%);
+  --popover: hsl(210, 15%, 8%);
+  --popover-foreground: hsl(0, 0%, 95%);
+  --card: hsl(210, 15%, 8%);
+  --card-foreground: hsl(0, 0%, 95%);
+  --border: hsl(210, 15%, 15%);
+  --input: hsl(210, 15%, 15%);
+  --primary: hsl(210, 40%, 35%);
+  --primary-foreground: hsl(0, 0%, 98%);
+  --secondary: hsl(210, 15%, 25%);
+  --secondary-foreground: hsl(0, 0%, 98%);
+  --accent: hsl(210, 50%, 55%);
+  --accent-foreground: hsl(0, 0%, 98%);
+  --destructive: hsl(0, 62%, 50%);
+  --destructive-foreground: hsl(0, 0%, 98%);
+  --ring: hsl(210, 15%, 70%);
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    line-height: 1.6;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    font-weight: 600;
+    line-height: 1.2;
+  }
+}
+
+@layer components {
+  .hero-bg {
+    background: linear-gradient(135deg, hsl(210, 70%, 24%) 0%, hsl(196, 40%, 54%) 100%);
+  }
+  
+  .service-card {
+    @apply transition-all duration-300 hover:shadow-xl hover:-translate-y-2;
+  }
+  
+  .portfolio-item {
+    @apply transition-all duration-300 hover:shadow-xl;
+  }
+  
+  .btn-primary {
+    @apply bg-primary text-primary-foreground px-6 py-3 rounded-lg font-semibold transition-all duration-300 shadow-md hover:shadow-lg;
+  }
+  
+  .btn-primary:hover {
+    opacity: 0.9;
+  }
+  
+  .btn-secondary {
+    @apply bg-secondary text-secondary-foreground px-6 py-3 rounded-lg font-semibold transition-all duration-300 shadow-md hover:shadow-lg;
+  }
+  
+  .btn-secondary:hover {
+    opacity: 0.9;
+  }
+  
+  .btn-accent {
+    @apply bg-accent text-accent-foreground px-6 py-3 rounded-lg font-semibold transition-all duration-300 shadow-md hover:shadow-lg;
+  }
+  
+  .btn-accent:hover {
+    opacity: 0.9;
+  }
+  
+  /* Fix for outline buttons with inline styles */
+  .outline-button-fix {
+    @apply transition-all duration-300;
+  }
+  
+  /* Ensure proper button contrast */
+  button[style*="borderColor"] {
+    @apply backdrop-blur-sm;
+  }
+}
+
+/* Fix for input and textarea text visibility */
+input, textarea {
+  color: hsl(210, 20%, 15%) !important; /* Always use dark text */
+}
+
+input::placeholder, textarea::placeholder {
+  color: hsl(210, 10%, 50%) !important; /* Lighter placeholder text */
+}
+
+/* Dark mode overrides */
+.dark input, .dark textarea {
+  color: hsl(0, 0%, 95%) !important; /* Light text in dark mode */
+}
+
+.dark input::placeholder, .dark textarea::placeholder {
+  color: hsl(210, 10%, 60%) !important; /* Lighter placeholder in dark mode */
+}
+
+@layer utilities {
+  .animate-fade-in {
+    animation: fadeIn 0.6s ease-in-out;
+  }
+  
+  .animate-slide-up {
+    animation: slideUp 0.8s ease-out;
+  }
+  
+  .animate-bounce-subtle {
+    animation: bounceSubtle 2s infinite;
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { transform: translateY(30px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes bounceSubtle {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: hsl(var(--muted));
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--muted-foreground));
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--primary));
+}
